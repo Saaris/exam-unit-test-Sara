@@ -29,6 +29,7 @@ let idCounter = 2002
 
 // denna funktion returnerar antalet produkter i kundvagnen
 function getCartItemCount() {
+	return cart.length
 	throw new Error('TODO')
 }
 
@@ -46,6 +47,17 @@ function clearCart() {
 	cart = []
 }
 
+//testa om getItem returnerar false om item med id inte finns i cart
+function getItem(index) {
+	if (index < 0 || index >= cart.length) {
+		return false
+	}
+	return cart[index].item
+
+}
 
 
-export { getCartItemCount, addToCart }
+
+
+
+export { getCartItemCount, addToCart, clearCart, getItem }
