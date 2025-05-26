@@ -23,8 +23,8 @@ describe('Validation', () => {
 		}
 		const expect = isProduct(exampleProduct)
 
-		const actual = true
-		expect(actual).toBe(expect)
+		const result = isProduct(exampleProduct)
+    	expect(result).toBe(true)
 	}
 	)
 

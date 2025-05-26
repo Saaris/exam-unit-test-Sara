@@ -26,6 +26,11 @@ describe('Cart', () => {
 
 		expect(itemCountAfter).toBe(itemCountBefore + 1)
 	})
+	test('addToCart returnerar false om produkten inte är giltig', () => {
+    const input = { id: 1002, name: 'Vattenpistol' } 
+    const result = addToCart(input)
+    expect(result).toBe(false)
+})
 
 	test('getCartItemCount returnernar antalet produkter i kundvagnen', () => {
 		

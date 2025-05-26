@@ -41,6 +41,7 @@ function addToCart(newItem) {
 	const cartItem = { id: idCounter, amount: 1, item: newItem }
 	idCounter++
 	cart.push(cartItem)
+	return false
 }
 //rensa cart
 function clearCart() {
@@ -64,7 +65,7 @@ function getTotalCartValue() {
 	}, 0)
 
 }
-	
+
 
 
 export { getCartItemCount, addToCart, clearCart, getItem, getTotalCartValue }
