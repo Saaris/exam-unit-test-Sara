@@ -40,7 +40,9 @@ function addToCart(newItem) {
 	idCounter++
 	cart.push(cartItem)
 }
+function clearCart() {
+	cart = []
+}
 
 
-
-export { getCartItemCount, addToCart }
+export { getCartItemCount, addToCart, clearCart }
