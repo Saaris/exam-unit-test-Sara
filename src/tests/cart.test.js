@@ -42,4 +42,15 @@ describe('Cart', () => {
     const expected = 0
     expect(actual).toBe(expected)
 	})
+
+	test('getTotalCartValue returnerar summan av alla produkter i kundvagnen', () => {
+		const item1 = { id: 1002, name: 'Vattenpistol', price: 40 }
+		const item2 = { id: 1003, name: 'Badanka', price: 50 }
+		addToCart(item1)
+		addToCart(item2)
+		const actual = getTotalCartValue()
+		const expected = item1.price + item2.price
+		expect(actual).toBe(expected)
+	})
+		
 })	// -------------------------------------------------- //

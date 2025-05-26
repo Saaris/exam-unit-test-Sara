@@ -59,11 +59,12 @@ function getItem(index) {
 function getTotalCartValue() {
     if (cart.length === 0) return 0
 
+	return cart.reduce((total, cartItem) => {
+		return total + (cartItem.item.price * cartItem.amount)
+	}, 0)
+
 }
 	
-
-
-
 
 
 export { getCartItemCount, addToCart, clearCart, getItem, getTotalCartValue }
