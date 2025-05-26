@@ -49,12 +49,9 @@ function clearCart() {
 }
 
 //testa om getItem returnerar false om item med id inte finns i cart
-function getItem(index) {
-	if (index < 0 || index >= cart.length) {
-		return false
-	}
-	return cart[index].item
-
+function getItem(itemId) {
+    const found = cart.find(cartItem => cartItem.item.id === itemId)
+    return found ? found.item : false
 }
 // denna funktion returnerar 0 om kundvagnen är tom
 function getTotalCartValue() {
@@ -66,7 +63,11 @@ function getTotalCartValue() {
 
 }
 function removeFromCart(itemId) {
+	 const index = cart.findIndex(cartItem => cartItem.item.id === itemId)
+    if (index === -1) {
+        return null
+}
 }
 
 
-export { getCartItemCount, addToCart, clearCart, getItem, getTotalCartValue }
+export { getCartItemCount, addToCart, clearCart, getItem, getTotalCartValue, removeFromCart }

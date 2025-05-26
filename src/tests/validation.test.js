@@ -15,36 +15,21 @@ const exampleCartObject = {
 // Group tests using "describe"
 describe('Validation', () => {
 
-	test ('isProduct returnerar true för en giltig produkt', () => { 
-		const exampleProduct = { 
-			id: 1001,
-			name: 'Badanka',
-			price: 500
-		}
-		const expect = isProduct(exampleProduct)
-
-		const result = isProduct(exampleProduct)
-    	expect(result).toBe(true)
-	}
-	)
-
-
-	// Använd en "test" eller "it" (de är synonymer) för varje testfall
-	/* Exempel på syntax:
-	test('beskriv testfallet', () => {
-		// här skriver du testkoden
-		// avsluta alltid med "expect"
+	test('isProduct returnerar true för en giltig produkt', () => {
+		expect(isProduct(exampleProduct)).toBe(true)
 	})
-	*/
 
+	test('isProduct returnerar false för en ogiltig produkt', () => {
+		const invalidProduct = { id: "fel", name: 123, price: "dyrt" }
+		expect(isProduct(invalidProduct)).toBe(false)
+	})
 
-	// ---------------------------------------------
-	// Följande testfall ska du implementera. Det är tillåtet att använda Joi. Gör i så fall ett schema för varje sorts objekt du vill kunna validera. Du får även ändra texten och du t.ex. vill skriva på svenska i stället för engelska.
-	// (Ta bort dessa kommentarer när du är klar)
+	test('isCartItem returnerar true för ett giltigt cart-objekt', () => {
+		expect(isCartItem(exampleCartObject)).toBe(true)
+	})
 
-	// 1. it returns true for a valid cart object
-	// 2. it returns false for invalid cart objects
-
-	// 3. it returns true for a valid product
-	// 4. it returns false for invalid cart objects
+	test('isCartItem returnerar false för ett ogiltigt cart-objekt', () => {
+		const invalidCartItem = { id: 1, amount: "en", item: {} }
+		expect(isCartItem(invalidCartItem)).toBe(false)
+	})
 })
