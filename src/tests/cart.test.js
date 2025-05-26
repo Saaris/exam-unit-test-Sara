@@ -1,5 +1,5 @@
 // importera här
-import { clearCart, addToCart, getCartItemCount, getItem } from "../cart"
+import { clearCart, addToCart, getCartItemCount, getItem, getTotalCartValue } from "../cart"
 
 
 
@@ -35,6 +35,11 @@ describe('Cart', () => {
     const itemId = 0
     const actual = getItem(itemId)
     expect(actual).toBe(false)
-})
-		
+	})
+
+	test('getTotalCartValue returnerar 0 om kundvagnen är tom', () => {
+    const actual = getTotalCartValue()
+    const expected = 0
+    expect(actual).toBe(expected)
+	})
 })	// -------------------------------------------------- //

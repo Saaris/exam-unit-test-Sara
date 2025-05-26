@@ -55,9 +55,15 @@ function getItem(index) {
 	return cart[index].item
 
 }
+// denna funktion returnerar 0 om kundvagnen är tom
+function getTotalCartValue() {
+    if (cart.length === 0) return 0
+
+}
+	
 
 
 
 
 
-export { getCartItemCount, addToCart, clearCart, getItem }
+export { getCartItemCount, addToCart, clearCart, getItem, getTotalCartValue }
