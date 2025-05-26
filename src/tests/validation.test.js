@@ -1,3 +1,4 @@
+
 import { isCartItem, isProduct } from "../validation.js"
 // Examples of a valid product and a valid cart item. You may use these when testing below.
 const exampleProduct = {
