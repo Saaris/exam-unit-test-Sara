@@ -1,5 +1,5 @@
 // importera här
-import { addToCart, getCartItemCount } from "../cart"
+import { clearCart, addToCart, getCartItemCount } from "../cart"
 
 
 describe('Cart', () => {
@@ -25,6 +25,22 @@ describe('Cart', () => {
 		expect(itemCountAfter).toBe(itemCountBefore + 1)
 	})
 
+	describe('getCartItemCount', () => {
 
-	// -------------------------------------------------- //
+		test('funktionen skall ökar antalet med ett', () => {
+			const input = 0
+			const expected = 1
+			const actual = getCartItemCount(input)
+			expect(actual).toBe(expected)
+
+		})
+		test('funktionen skall returnera minska antalet med ett', () => {
+			const input = 1
+			const expected = 0
+			const actual = getCartItemCount(input)
+			expect(actual).toBe(expected)
+
+		})
+	})
 })
+	// -------------------------------------------------- //

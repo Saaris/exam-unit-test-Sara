@@ -27,6 +27,7 @@ let idCounter = 2002
 // Din kod börjar här
 // Du får en funktion att börja med
 
+// denna funktion returnerar antalet produkter i kundvagnen
 function getCartItemCount() {
 	throw new Error('TODO')
 }
@@ -39,6 +40,10 @@ function addToCart(newItem) {
 	const cartItem = { id: idCounter, amount: 1, item: newItem }
 	idCounter++
 	cart.push(cartItem)
+}
+//rensa cart
+function clearCart() {
+	cart = []
 }
 
 
