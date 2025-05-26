@@ -65,7 +65,8 @@ function getTotalCartValue() {
 	}, 0)
 
 }
-
+function removeFromCart(itemId) {
+}
 
 
 export { getCartItemCount, addToCart, clearCart, getItem, getTotalCartValue }
