@@ -1,5 +1,5 @@
 import { isCartItem, isProduct } from "../validation.js"
-// Examples of a valid product and a valid cart item. You may use these when testing below.
+
 const exampleProduct = {
 	id: 1001,
 	name: 'Badanka',
@@ -13,23 +13,74 @@ const exampleCartObject = {
 }
 
 // Group tests using "describe"
-describe('Validation', () => {
+describe('Validering för cart och produkt', () => {
 
-	test('isProduct returnerar true för en giltig produkt', () => {
-		expect(isProduct(exampleProduct)).toBe(true)
+	test('Om isProduct är en giltig produkt returnera true', () => {
+		const validProduct = exampleProduct
+		const expected = true
+		const actual = isProduct(validProduct)
+		expect (actual).toBe(expected)
 	})
 
-	test('isProduct returnerar false för en ogiltig produkt', () => {
-		const invalidProduct = { id: "fel", name: 123, price: "dyrt" }
-		expect(isProduct(invalidProduct)).toBe(false)
+	test('isProduct returnerar false om det inte är ett giltigt egenskap i objekt', () => {
+		const invalidObject = [
+		[{}],
+		[{id: 1001, name: 123, price: 500}],
+		[{id: null, name: 'Badanka', price: 500 }],
+		[{id: 1001, name: 'Badanka', price:'500'}],
+		[{id: '1001', name: 'Badanka', price: 500}],
+		]
+
+		const input = invalidObject 
+		const expected = false 
+		const actual = isProduct(input)
+		expect(actual).toBe(expected)
+	
+	})
+	
+
+	test('isCartItem returnerar true för ett giltigt cart objekt', () => {
+		const input = exampleCartObject
+		const expected = true
+		const actual = isCartItem(input)
+		expect(actual).toBe(expected)
+		
+	})
+ 
+		const invalidCartObject1 = 
+			[
+			[false, 'inte ett objekt'],
+			[false, null]
+			]
+
+	test.each(invalidCartObject1)('om isCartItem inte är ett objekt, returnera false', (expected, input) => {
+		const actual = isCartItem(input)
+		expect(actual).toBe(expected)
 	})
 
-	test('isCartItem returnerar true för ett giltigt cart-objekt', () => {
-		expect(isCartItem(exampleCartObject)).toBe(true)
-	})
+	const invalidCartObject2 = [
+		[{}],
+	
+		[{
+			id: 2001,
+			amount: 1,
+			item: null
+		}],
 
-	test('isCartItem returnerar false för ett ogiltigt cart-objekt', () => {
-		const invalidCartItem = { id: 1, amount: "en", item: {} }
-		expect(isCartItem(invalidCartItem)).toBe(false)
+		[{ 
+			id: "2001",
+			amount: 1,
+			item: exampleProduct
+		}],
+
+		[{ 
+			id: 2001,
+			amount: "1",
+			item: exampleProduct
+		}],
+	]
+	test.each(invalidCartObject2)('om isCartItem är ett objekt, men inte har en giltig property, returnera false', (input) => {
+		expect( isCartItem (input) ).toBe(false)
 	})
+	
 })

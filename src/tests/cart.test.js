@@ -4,12 +4,14 @@ import { clearCart, addToCart, getCartItemCount, getItem, getTotalCartValue, rem
 
 
 
-describe('Cart', () => {
-	beforeEach(() => {
-		// Denna kod körs före varje test. Det är för att rensa kundvagnen, så inte saker ligger kvar från föregående test.
-		clearCart()
-	})
-})
+// describe('Cart', () => {
+// 	beforeEach(() => {
+// 		// Denna kod körs före varje test. Det är för att rensa kundvagnen, så inte saker ligger kvar från föregående test.
+// 		clearCart()
+
+// 		})
+		
+// })
 
 	// -------------------------------------------------- //
 	// Skriv dina testfall här
@@ -42,13 +44,13 @@ describe('getCartItemCount', () => {
 	})
 
 	test('getCartItemCount returnernar antalet produkter i kundvagnen', () => {
-			const item1 = { id: 1002, name: 'Vattenpistol', price: 40 }
-			const item2 = { id: 1003, name: 'Badanka', price: 50 }
-			addToCart(item1)
-			addToCart(item2)
-			const actual = getCartItemCount()
-			const expected = 2
-			expect(actual).toBe(expected)
+		const item1 = { id: 1002, name: 'Vattenpistol', price: 40 }
+		const item2 = { id: 1003, name: 'Badanka', price: 50 }
+		addToCart(item1)
+		addToCart(item2)
+		const actual = getCartItemCount()
+		const expected = 2
+		expect(actual).toBe(expected)
 		
 	})
 })
@@ -56,29 +58,33 @@ describe('getCartItemCount', () => {
 describe('getItem', () => {
 
 	test('getItem returnerar false om id inte finns i cart', () => {
-    const itemId = 0
-    const actual = getItem(itemId)
-    expect(actual).toBe(false)
+		const itemId = 0
+		const actual = getItem(itemId)
+		expect(actual).toBe(false)
 	})
 })
 
 describe('getTotalCartValue', () => {
 
-	test('getTotalCartValue returnerar 0 om kundvagnen är tom', () => {
-    const actual = getTotalCartValue()
-    const expected = 0
-    expect(actual).toBe(expected)
-	})
+    beforeEach(() => {
+        clearCart()
+    })
 
-	test('getTotalCartValue returnerar summan av alla produkter i kundvagnen', () => {
-		const item1 = { id: 1002, name: 'Vattenpistol', price: 40 }
-		const item2 = { id: 1003, name: 'Badanka', price: 50 }
-		addToCart(item1)
-		addToCart(item2)
-		const actual = getTotalCartValue()
-		const expected = item1.price + item2.price
-		expect(actual).toBe(expected)
-	})
+    test('getTotalCartValue returnerar 0 om kundvagnen är tom', () => {
+        const actual = getTotalCartValue()
+        const expected = 0
+        expect(actual).toBe(expected)
+    })
+
+    test('getTotalCartValue returnerar summan av alla produkter i kundvagnen', () => {
+        const item1 = { id: 1002, name: 'Vattenpistol', price: 40 }
+        const item2 = { id: 1003, name: 'Badanka', price: 50 }
+        addToCart(item1)
+        addToCart(item2)
+        const actual = getTotalCartValue()
+        const expected = item1.price + item2.price
+        expect(actual).toBe(expected)
+    })
 })
 
 describe('removeFromCart tar bort en produkt från kundvagnen', () => {
