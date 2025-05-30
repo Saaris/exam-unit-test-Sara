@@ -56,21 +56,23 @@ function getItem(itemId) {
     return found ? found.item : false
 }
 // denna funktion returnerar 0 om kundvagnen är tom
-function getCartValue() {
+function getTotalCartValue() {
     if (cart.length === 0) 
 		return 0
 
 	return cart.reduce((total, cartItem) => {
 		return total + (cartItem.item.price * cartItem.amount)
 	}, 0)
-
 }
+
 function removeFromCart(itemId) {
-	 const index = cart.findIndex(cartItem => cartItem.item.id === itemId)
+    const index = cart.findIndex(cartItem => cartItem.item.id === itemId)
     if (index === -1) {
         return null
-}
+    }
+    cart.splice(index, 1)
+    return true
 }
 
 
-export { getCartItemCount, addToCart, clearCart, getItem, getCartValue, removeFromCart }
+export { getCartItemCount, addToCart, clearCart, getItem, getTotalCartValue, removeFromCart }

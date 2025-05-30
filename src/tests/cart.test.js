@@ -1,6 +1,7 @@
-import { clearCart, addToCart, getCartItemCount, getItem, getCartValue, removeFromCart } from "../cart"
+import { clearCart, addToCart, getCartItemCount, getItem, getTotalCartValue, removeFromCart } from "../cart"
 
-
+ const exampleProduct = { id: 1002, name: 'Vattenpistol', price: 40 }
+   
 
 
 describe('Cart', () => {
@@ -61,24 +62,20 @@ describe('getItem', () => {
 	})
 })
 
-describe('getCartValue', () => {
+describe('getTotalCartValue', () => {
 
-    beforeEach(() => {
-        clearCart()
-    })
-
-    test('getCartValue returnerar 0 om kundvagnen är tom', () => {
-        const actual = getCartValue()
+    test('getTotalCartValue returnerar 0 om kundvagnen är tom', () => {
+        const actual = getTotalCartValue()
         const expected = 0
         expect(actual).toBe(expected)
     })
 
-    test('getCartValue returnerar summan av alla produkter i kundvagnen', () => {
+    test('getTotalCartValue returnerar summan av alla produkter i kundvagnen', () => {
         const item1 = { id: 1002, name: 'Vattenpistol', price: 40 }
         const item2 = { id: 1003, name: 'Badanka', price: 50 }
         addToCart(item1)
         addToCart(item2)
-        const actual = getCartValue()
+        const actual = getTotalCartValue()
         const expected = item1.price + item2.price
         expect(actual).toBe(expected)
     })
@@ -93,10 +90,13 @@ describe('removeFromCart tar bort produkter från kundvagnen', () => {
 		expect(result).toBe(expected)
 
 	})
+
 	test('removeFromCart returnerar true om man tar bort en produkt från kundvagnen', ()  => {	
+    const item = exampleProduct
+    addToCart(item) 
+    const actual = removeFromCart(item.id) 
+    expect(actual).toBe(expected)
+	})
 
-
-	})	
-		
-	})	
+})	
 })
