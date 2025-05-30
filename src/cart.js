@@ -44,9 +44,6 @@ function addToCart(newItem) {
 
 // Denna funktion returnerar antalet produkter i kundvagnen
 function getCartItemCount() {
-    if (cart.length === 0) {
-        throw new Error("Din varukorg är tom")
-    }
     return cart.length
 }
 

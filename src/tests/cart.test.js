@@ -39,11 +39,10 @@ describe('getCartItemCount', () => {
 		expect(actual).toBe(expected)
 	})
 
-	test('getCartItemCount kastar ett fel om antalet produkter är 0', () => {
-
-		expect(() => {
-			getCartItemCount()
-		}).toThrow('Din varukorg är tom')		
+	test('getCartItemCount returnerar 0 om kundvagnen är tom', () => {
+    const actual = getCartItemCount()
+    const expected = 0
+    expect(actual).toBe(expected)
 	})
 })
 
@@ -56,10 +55,10 @@ describe('getItem', () => {
 	})
 
 	test('getItem returnerar objektet om id finns i cart', () => {
-    const item = { id: 1002, name: 'Vattenpistol', price: 40 }
-    addToCart(item)
+    const expected = { id: 1002, name: 'Vattenpistol', price: 40 }
+    addToCart(expected)
     const actual = getItem(1002)
-    expect(actual).toEqual(item)
+    expect(actual).toEqual(expected)
 	})
 })
 
