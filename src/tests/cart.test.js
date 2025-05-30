@@ -1,4 +1,4 @@
-import { clearCart, addToCart, getCartItemCount, getItem, getTotalCartValue, removeFromCart } from "../cart"
+import { clearCart, addToCart, getCartItemCount, getItem, getTotalCartValue, removeFromCart, editCart, getCart } from "../cart"
 
  const exampleProduct = { id: 1002, name: 'Vattenpistol', price: 40 }
    
@@ -14,8 +14,6 @@ describe('Cart', () => {
 		const itemCountBefore = getCartItemCount()
 		const input = { id: 1002, name: 'Vattenpistol', price: 40 }
 
-		// addToCart returnerar inget - den påverkar kundvagnen
-		// vi behöver använda getCartItemCount för att se om det har lagts till en ny produkt i kundvagnen
 		addToCart(input)
 		const itemCountAfter = getCartItemCount()
 
@@ -97,6 +95,23 @@ describe('removeFromCart tar bort produkter från kundvagnen', () => {
     const actual = removeFromCart(item.id) 
     expect(actual).toBe(expected)
 	})
-
 })	
+
+describe('editCart', () => {
+
+	test('editCart ändrar antalet produkter man har i kundvagnen', () => {
+
+		const item = { id: 1002, name: 'Vattenpistol', price: 40 }
+    	addToCart(item)
+
+		const newValues = { amount: 5 }
+    	editCart(1002, newValues)
+
+		const cartItem = getCart().find(cartItem => cartItem.item.id === 1002)
+
+		const actual = cartItem.amount
+		const expected = 5
+    	expect(actual).toBe(expected)
+	})
+})
 })

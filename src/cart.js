@@ -73,6 +73,19 @@ function removeFromCart(itemId) {
     cart.splice(index, 1)
     return true
 }
+function editCart(itemId, newValues) {
+	    const cartItem = cart.find(cartItem => cartItem.item.id === itemId)
+    if (!cartItem) {
+        return false 
+    }
+   
+    Object.assign(cartItem, newValues)
+    return true
+
+}
+function getCart() {
+    return cart
+}
 
 
-export { getCartItemCount, addToCart, clearCart, getItem, getTotalCartValue, removeFromCart }
+export { getCartItemCount, addToCart, clearCart, getItem, getTotalCartValue, removeFromCart, editCart, getCart }
