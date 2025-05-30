@@ -1,17 +1,15 @@
 // importera här
-import { clearCart, addToCart, getCartItemCount, getItem, getTotalCartValue, removeFromCart } from "../cart"
+import { clearCart, addToCart, getCartItemCount, getItem, getCartValue, removeFromCart } from "../cart"
 
 
 
 
-// describe('Cart', () => {
-// 	beforeEach(() => {
-// 		// Denna kod körs före varje test. Det är för att rensa kundvagnen, så inte saker ligger kvar från föregående test.
-// 		clearCart()
+describe('Cart', () => {
+ 	beforeEach(() => {
+ 		// Denna kod körs före varje test. Det är för att rensa kundvagnen, så inte saker ligger kvar från föregående test.
+ 		clearCart()
+	})		
 
-// 		})
-		
-// })
 
 	// -------------------------------------------------- //
 	// Skriv dina testfall här
@@ -31,7 +29,7 @@ describe('addToCart', () => {
 		expect(itemCountAfter).toBe(itemCountBefore + 1)
 	})
 
-	test('addToCart returnerar false om produkten inte är giltig', () => {
+	test('addToCart returnerar false om produkten (isProduct) inte är giltig', () => {
     const input = { id: 1002, name: 'Vattenpistol' } 
     const result = addToCart(input)
     expect(result).toBe(false)
@@ -51,43 +49,48 @@ describe('getCartItemCount', () => {
 		const actual = getCartItemCount()
 		const expected = 2
 		expect(actual).toBe(expected)
-		
+	})
+	test('getCartItemCount returnerar "Din varukorg är tom" om antalet produkter är 0', () => {
+		const actual = getCartItemCount()
+		const expected = 0
+		expect(actual).toBe(expected)
 	})
 })
 
 describe('getItem', () => {
 
-	test('getItem returnerar false om id inte finns i cart', () => {
+	test('getItem returnerar false om giltigt ID inte finns i cart', () => {
+		const id = itemId
 		const itemId = 0
 		const actual = getItem(itemId)
 		expect(actual).toBe(false)
 	})
 })
 
-describe('getTotalCartValue', () => {
+describe('getCartValue', () => {
 
     beforeEach(() => {
         clearCart()
     })
 
-    test('getTotalCartValue returnerar 0 om kundvagnen är tom', () => {
-        const actual = getTotalCartValue()
+    test('getCartValue returnerar 0 om kundvagnen är tom', () => {
+        const actual = getCartValue()
         const expected = 0
         expect(actual).toBe(expected)
     })
 
-    test('getTotalCartValue returnerar summan av alla produkter i kundvagnen', () => {
+    test('getCartValue returnerar summan av alla produkter i kundvagnen', () => {
         const item1 = { id: 1002, name: 'Vattenpistol', price: 40 }
         const item2 = { id: 1003, name: 'Badanka', price: 50 }
         addToCart(item1)
         addToCart(item2)
-        const actual = getTotalCartValue()
+        const actual = getCartValue()
         const expected = item1.price + item2.price
         expect(actual).toBe(expected)
     })
 })
 
-describe('removeFromCart tar bort en produkt från kundvagnen', () => {
+describe('removeFromCart tar bort produkter från kundvagnen', () => {
 	
 	test('removeFromCart returnerar null om produkten inte finns i kundvagnen', () => {
 		const itemId = 1001
@@ -96,7 +99,10 @@ describe('removeFromCart tar bort en produkt från kundvagnen', () => {
 		expect(result).toBe(expected)
 
 	})
-
-
+	test('removeFromCart returnerar true om man tar bort en produkt från kundvagnen', ()  => {	
 		
-})	// -------------------------------------------------- //
+
+	})	
+		
+	})	
+})
