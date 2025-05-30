@@ -39,9 +39,12 @@ describe('getCartItemCount', () => {
 		expect(actual).toBe(expected)
 	})
 
-	test('getCartItemCount kastar "Din varukorg är tom" om antalet produkter är 0', () => {
-    expect(() => getCartItemCount()).toThrow("Din varukorg är tom")
-})
+	test('getCartItemCount kastar ett fel om antalet produkter är 0', () => {
+
+		expect(() => {
+			getCartItemCount()
+		}).toThrow('Din varukorg är tom')		
+	})
 })
 
 describe('getItem', () => {
@@ -92,7 +95,8 @@ describe('removeFromCart tar bort produkter från kundvagnen', () => {
 	test('removeFromCart returnerar true om man tar bort en produkt från kundvagnen', ()  => {	
     const item = exampleProduct
     addToCart(item) 
-    const actual = removeFromCart(item.id) 
+    const actual = removeFromCart(item.id)
+	const expected = true 
     expect(actual).toBe(expected)
 	})
 })	
