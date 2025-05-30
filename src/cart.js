@@ -21,18 +21,9 @@ import { isCartItem, isProduct } from "./validation.js"
 
 let cart = []
 let idCounter = 2002
-// -------------------------------------------------- //
 
-
-// Din kod börjar här
-// Du får en funktion att börja med
-
-// Denna funktion returnerar antalet produkter i kundvagnen
-function getCartItemCount() {
-	 if (cart.length === 0) {
-        throw new Error("Din varukorg är tom")
-    }
-    return cart.length
+function clearCart() {
+	cart = []
 }
 
 function addToCart(newItem) {
@@ -50,9 +41,13 @@ function addToCart(newItem) {
 		cart[index].amount++
 	}
 }
-	//Rensa cart
-function clearCart() {
-	cart = []
+
+// Denna funktion returnerar antalet produkter i kundvagnen
+function getCartItemCount() {
+	 if (cart.length === 0) {
+        throw new Error("Din varukorg är tom")
+    }
+    return cart.length
 }
 
 //Testa om getItem returnerar false om item med id inte finns i cart
