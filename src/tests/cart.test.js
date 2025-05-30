@@ -1,4 +1,4 @@
-import { clearCart, addToCart, getCartItemCount, getItem, getTotalCartValue, removeFromCart, editCart, getCart } from "../cart"
+import { clearCart, addToCart, getCartItemCount, getItem, getTotalCartValue, removeFromCart, editCart, getCart } from "../cart.js"
 
  const exampleProduct = { id: 1002, name: 'Vattenpistol', price: 40 }
    
@@ -64,9 +64,9 @@ describe('getItem', () => {
 
 describe('getTotalCartValue', () => {
 
-    test('getTotalCartValue returnerar 0 om kundvagnen är tom', () => {
+    test('getTotalCartValue returnerar "Din varukorg är tom" om kundvagnen är tom', () => {
         const actual = getTotalCartValue()
-        const expected = 0
+        const expected = "Din varukorg är tom"
         expect(actual).toBe(expected)
     })
 

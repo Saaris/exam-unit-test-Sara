@@ -55,7 +55,7 @@ function getItem(itemId) {
 // denna funktion returnerar 0 om kundvagnen är tom
 function getTotalCartValue() {
     if (cart.length === 0) 
-		return 0
+		return "Din varukorg är tom" 
 
 	return cart.reduce((total, cartItem) => {
 		return total + (cartItem.item.price * cartItem.amount)
