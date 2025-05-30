@@ -39,7 +39,7 @@ describe('Validering för cart och produkt', () => {
 
 	test('isCartItem returnerar true för ett giltigt cart objekt', () => {
 		const expected = true
-		const actual = isCartItem(input)
+		const actual =  isCartItem(exampleCartObject)
 		expect(actual).toBe(expected)
 		
 	})
@@ -54,8 +54,7 @@ describe('Validering för cart och produkt', () => {
 				{ id: 2001, amount: "1", item: exampleProduct }, 
 			]
 
-	test.each(invalidCartObjects)('isCartItem returnerar false för ogiltigt cart-objekt: %p', (expected, input) => {
-		const input = invalidCartObjects
+	test.each(invalidCartObjects)('isCartItem returnerar false för ogiltigt cart-objekt: %p', (input) => {
 		const expected = false
 		const actual = isCartItem(input)
 		expect(actual).toBe(expected)
