@@ -1,3 +1,4 @@
+
 import { isCartItem, isProduct } from "../validation.js"
 
 const exampleProduct = {
