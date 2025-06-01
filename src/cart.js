@@ -78,8 +78,8 @@ function editCart(itemId, newValues) {
    
     Object.assign(cartItem, newValues)
     return true
-
 }
+
 function getCart() {
     return cart
 }
