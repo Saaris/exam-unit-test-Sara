@@ -1,4 +1,3 @@
-
 import { isCartItem, isProduct } from "../validation.js"
 
 const exampleProduct = {
@@ -13,7 +12,6 @@ const exampleCartObject = {
 	item: exampleProduct
 }
 
-// Group tests using "describe"
 describe('Validering för cart och produkt', () => {
 	
 	test('Om isProduct är en giltig produkt returnera true', () => {
