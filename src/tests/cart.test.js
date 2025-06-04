@@ -20,11 +20,14 @@ describe('Cart', () => {
 		expect(itemCountAfter).toBe(itemCountBefore + 1)
 	})
 
-	test('addToCart returnerar false om produkten (isProduct) inte är giltig', () => {
-		const input = { id: 1002, name: 'Vattenpistol' } 
-		const result = addToCart(input)
-		expect(result).toBe(false)
+	test('addToCart kastar fel om produkten inte är giltig', () => {
+	const input = { id: 1002, name: 'Vattenpistol' } //tog bort pris
+
+		expect(() => 
+
+		addToCart(input)).toThrow("Produkten är inte giltig")
 	})
+
 
 
 describe('getCartItemCount', () => {
@@ -40,9 +43,9 @@ describe('getCartItemCount', () => {
 	})
 
 	test('getCartItemCount returnerar 0 om kundvagnen är tom', () => {
-    const actual = getCartItemCount()
-    const expected = 0
-    expect(actual).toBe(expected)
+		const actual = getCartItemCount()
+		const expected = 0
+		expect(actual).toBe(expected)
 	})
 })
 
@@ -82,14 +85,6 @@ describe('getTotalCartValue', () => {
 })
 
 describe('removeFromCart tar bort produkter från kundvagnen', () => {
-	
-	test('removeFromCart returnerar null om produkten inte finns i kundvagnen', () => {
-		const itemId = 1001
-		const result = removeFromCart(itemId)
-		const expected = null
-		expect(result).toBe(expected)
-
-	})
 
 	test('removeFromCart returnerar true om man tar bort en produkt från kundvagnen', ()  => {	
     const item = exampleProduct
@@ -98,6 +93,12 @@ describe('removeFromCart tar bort produkter från kundvagnen', () => {
 	const expected = true 
     expect(actual).toBe(expected)
 	})
+
+	test('removeFromCart kastar fel om produkten inte finns', () => {
+		expect(() => 
+		removeFromCart(0)).toThrow("Produkten finns inte i kundvagnen")
+	})
+
 })	
 
 describe('editCart', () => {

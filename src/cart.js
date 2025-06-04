@@ -9,7 +9,7 @@ function clearCart() {
 
 function addToCart(newItem) {
 	if( !isProduct(newItem) ) {
-		return false
+		throw new Error("Produkten är inte giltig")
 	}
 
 	const newId = idCounter
@@ -46,11 +46,13 @@ function getTotalCartValue() {
 function removeFromCart(itemId) {
     const index = cart.findIndex(cartItem => cartItem.item.id === itemId)
     if (index === -1) {
-        return null
+        throw new Error("Produkten finns inte i kundvagnen")
     }
     cart.splice(index, 1)
     return true
 }
+
+
 function editCart(itemId, newValues) {
 	    const cartItem = cart.find(cartItem => cartItem.item.id === itemId)
     if (!cartItem) {
